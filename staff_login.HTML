@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lavatory War Roleplay - Staff Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Comic Sans MS', sans-serif;
+      background: linear-gradient(135deg, #4a61d1, #7289da);
+      color: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      text-align: center;
+      padding: 40px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 12px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+      max-width: 400px;
+      color: #ffffff;
+    }
+    h1 {
+      color: #ffdd57;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+    .login-button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #ff914d;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .login-button:hover {
+      background-color: #ff7b33;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Welcome, Staff Team</h1>
+    <p>Please enter your Discord username to access your designated room.</p>
+    <input type="text" id="username" placeholder="Enter your Discord username" />
+    <button class="login-button" onclick="login()">Log In</button>
+  </div>
+
+  <script>
+    function login() {
+      const username = document.getElementById("username").value.toLowerCase();
+      let room = '';
+      let userId = localStorage.getItem(username);  // Retrieve existing ID if stored
+
+      // Check predefined usernames
+      if (username === 'mabi' || username === 'nameless') {
+        room = 'cool_staff_page';
+        userId = '1001';
+      } else if (username === 'hellocute') {
+        room = 'owner_room';
+        userId = '1002';
+      } else if (username === 'boomonyt') {
+        room = 'website_maker_room';
+        userId = '1003';
+      } else if (username === 'jax') {
+        room = 'friend_room';
+        userId = '1004';
+      } else if (username === 'zamasudagoat') {
+        room = 'nah_uh_page';
+        userId = '1005';
+      } else {
+        // Check if username is new and requires password verification
+        if (!userId) {
+          const password = prompt("Enter the password to create a new staff ID:");
+          if (password === '9529') {
+            // Generate a unique ID and assign a default room
+            userId = `10${Math.floor(Math.random() * 900) + 100}`;
+            room = 'new_staff_room';  // default room for new staff
+            localStorage.setItem(username, userId);  // Store username and ID
+            alert(`Welcome, ${username}! Your ID has been created.`);
+          } else {
+            alert("Incorrect password. Access denied.");
+            return;
+          }
+        }
+      }
+
+      // If user ID exists, save it to localStorage for quick future access
+      localStorage.setItem("currentUser", username);
+      localStorage.setItem("currentUserId", userId);
+
+      // Redirect to staff page with room parameter
+      window.location.href = `staff.html?room=${room}`;
+    }
+  </script>
+
+</body>
+</html>

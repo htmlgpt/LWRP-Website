@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lavatory War Roleplay - Staff Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Comic Sans MS', sans-serif;
+      background: linear-gradient(135deg, #4a61d1, #7289da);
+      color: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
+      color: #ffffff;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #ffdd57;
+      margin-bottom: 20px;
+    }
+
+    /* Hidden by default */
+    .room-section {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    /* Specific Room Styles */
+    .owner-room { background-color: #ff914d; }
+    .cool-staff-room { background-color: #4caf50; }
+    .friend-room { background-color: #ffdd57; color: #333; }
+    .nah-uh-room { background-color: #808080; }
+    .website-maker-room { background-color: #ffdd57; color: #333; }
+    .new-staff-room { background-color: #4a61d1; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Staff Portal</h1>
+    <p>Welcome to the Lavatory War Roleplay Staff Portal. Your designated room is below.</p>
+
+    <!-- Room Sections -->
+    <div id="owner_room" class="room-section owner-room">
+      <h2>Owner Room</h2>
+      <p>Welcome, Hellocute! This is your exclusive Owner Room.</p>
+    </div>
+
+    <div id="cool_staff_page" class="room-section cool-staff-room">
+      <h2>Cool Staff Page</h2>
+      <p>Welcome to the exclusive Cool Staff Page! Enjoy your stay!</p>
+    </div>
+
+    <div id="friend_room" class="room-section friend-room">
+      <h2>Friend Room</h2>
+      <p>Welcome, Jax! This is your Friend Room.</p>
+    </div>
+
+    <div id="nah_uh_page" class="room-section nah-uh-room">
+      <h2>Nah Uh Page</h2>
+      <p>Sorry, Zamasudagoat, you don't have access to any special rooms.</p>
+    </div>
+
+    <div id="website_maker_room" class="room-section website-maker-room">
+      <h2>Website Maker Room</h2>
+      <p>Welcome, Boomonyt! This is your Website Maker Room.</p>
+    </div>
+
+    <div id="new_staff_room" class="room-section new-staff-room">
+      <h2>New Staff Room</h2>
+      <p>Welcome to the LWRP Staff Portal! Your default room is here until assigned further permissions.</p>
+    </div>
+  </div>
+
+  <script>
+    // Get the stored user ID and room from URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const room = params.get('room');
+    const userId = localStorage.getItem("currentUserId");
+
+    // Display the correct room based on the URL room parameter
+    if (room && userId) {
+      document.getElementById(room).style.display = 'block';
+    } else {
+      alert("Room access not found.");
+      window.location.href = "staff_login.html";
+    }
+  </script>
+
+</body>
+</html>
